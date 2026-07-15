@@ -1,0 +1,47 @@
+name: 'GitHub App Auth'
+description:
+  'GitHub Action which gets an auth token for a repo or organization via a
+  GitHub app installation'
+author: 'step-security'
+
+inputs:
+  creds:
+    description:
+      'A credential bundle for the GitHub app to generate the token for'
+    required: true
+  org:
+    description: 'The organization for an org-scoped token'
+    required: false
+  owner:
+    description: 'The repo owner for a repo-scoped token'
+    required: false
+  repo:
+    description: 'The repo name for a repo-scoped token'
+    required: false
+  export-git-user:
+    description:
+      'Export environment variables which set the git user to the GitHub app
+      user'
+    required: false
+    default: false
+  permissions:
+    description: |
+      Optional permission narrowing for the minted installation token.
+      Newline-delimited `<permission>: <level>` pairs, where level is
+      read | write | admin. Permissions listed here must be a subset of
+      the App's installation permissions; unlisted permissions are not
+      granted to the token. Example:
+        permissions: |
+          contents: read
+          issues: write
+    required: false
+    default: ''
+
+outputs:
+  token:
+    description: 'GitHub installation access token'
+
+runs:
+  using: node24
+  main: dist/index.js
+  post: dist/post.js

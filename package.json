@@ -1,0 +1,58 @@
+{
+  "name": "github-app-auth-action",
+  "description": "GitHub Action which gets an auth token for a repo or organization via a GitHub app installation",
+  "version": "2.1.0",
+  "private": true,
+  "homepage": "https://github.com/step-security/github-app-auth-action#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/step-security/github-app-auth-action.git"
+  },
+  "bugs": {
+    "url": "https://github.com/step-security/github-app-auth-action/issues"
+  },
+  "main": "dist/index.js",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "bundle": "yarn format:write && yarn package",
+    "ci-test": "vitest run --coverage --reporter=verbose",
+    "format:write": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint . -c ./.github/linters/.eslintrc.yml",
+    "package": "esbuild src/index.js src/post.js --bundle --outdir=dist --platform=node --target=node24",
+    "package:watch": "yarn package --watch",
+    "test": "vitest run --coverage --reporter=verbose",
+    "all": "yarn format:write && yarn lint && yarn test && yarn package"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^2.0.0",
+    "@actions/github": "^9.0.0",
+    "@electron/github-app-auth": "^3.2.0",
+    "axios": "^1.18.0",
+    "yaml": "^2.8.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.5.6",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
+    "@vitest/coverage-v8": "^4.0.5",
+    "esbuild": "^0.25.0",
+    "eslint": "^8.48.0",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-github": "^4.9.2",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-vitest": "^0.5.4",
+    "prettier": "^3.0.2",
+    "typescript": "^5.2.2",
+    "vitest": "^4.1.0"
+  },
+  "resolutions": {
+    "@typescript-eslint/typescript-estree@npm:6.21.0/minimatch": "^9.0.7",
+    "fsevents": "npm:@electron/fsevents@2.3.3-fork"
+  },
+  "packageManager": "yarn@4.10.3+sha512.c38cafb5c7bb273f3926d04e55e1d8c9dfa7d9c3ea1f36a4868fa028b9e5f72298f0b7f401ad5eb921749eb012eb1c3bb74bf7503df3ee43fd600d14a018266f"
+}
