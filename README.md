@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Generate GitHub App token
-        uses: step-security/github-app-auth-action@v1.1.1
+        uses: step-security/github-app-auth-action@v2
         id: generate-token
         with:
           creds: ${{ secrets.GH_APP_CREDS }}
@@ -97,7 +97,7 @@ jobs:
           permissions: |
             contents: read
 
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           repository: my-org/my-repo
           token: ${{ steps.read-token.outputs.token }}

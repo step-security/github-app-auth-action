@@ -2,7 +2,7 @@ name: 'GitHub App Auth'
 description:
   'GitHub Action which gets an auth token for a repo or organization via a
   GitHub app installation'
-author: 'David Sanders'
+author: 'step-security'
 
 inputs:
   creds:
