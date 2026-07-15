@@ -23,6 +23,18 @@ vi.mock('@actions/github', () => {
 });
 vi.mock('@actions/github/lib/utils');
 vi.mock('@electron/github-app-auth');
+vi.mock('axios', () => ({
+  default: {
+    post: vi.fn().mockResolvedValue({})
+  },
+  isAxiosError: vi.fn().mockReturnValue(false)
+}));
+vi.mock('fs', () => ({
+  default: {
+    existsSync: vi.fn().mockReturnValue(false),
+    readFileSync: vi.fn()
+  }
+}));
 
 vi.mocked(appCredentialsFromString).mockReturnValue({
   appId: '12345',
